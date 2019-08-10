@@ -1,7 +1,6 @@
 #! /usr/bin/python3
 
 import time
-import sys
 import argparse
 
 from selenium import webdriver
@@ -83,6 +82,9 @@ def mailbox(driver, username):
         print("Failed to move to mailbox")
         return False
 
+    time.sleep(1)
+    print("Done opening mailbox")
+
     return True
 
 
@@ -126,10 +128,15 @@ def activate(driver, username):
     print("Switch to verify tab")
     driver.switch_to_window("_other")
 
+    time.sleep(1)
+    print("Done verifying email")
+
     return True
 
 
 def coupon(driver, username, password):
+    print("Receive coupon")
+
     # Remove Preference popup
     popup_layer = find_element_no_except(driver, By.ID, "GmktPopLayer")
     if popup_layer:
@@ -193,6 +200,7 @@ def coupon(driver, username, password):
     download_buttons[0].click()
 
     time.sleep(1)
+    print("Done receiving coupon")
 
     return True
 
@@ -252,6 +260,9 @@ def register(driver, username, email, password):
     print("Submit")
     submit_button = driver.find_element(By.ID, "btnSubmit")
     submit_button.click()
+
+    time.sleep(1)
+    print("Done registering account")
 
     return True
 
