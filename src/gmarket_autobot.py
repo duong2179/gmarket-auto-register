@@ -75,7 +75,7 @@ def mailbox(driver, username):
 
     # Succeeded ?
     try:
-        WebDriverWait(driver, 3).until(
+        WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.ID, "inboxpane"))
         )
     except TimeoutException:
