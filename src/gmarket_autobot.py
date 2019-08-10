@@ -2,9 +2,9 @@
 
 import time
 import sys
+import argparse
 
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,6 +15,13 @@ GLOBAL_GMARKET_REGIS_URL = (
     "https://gmemberssl.gmarket.co.kr/Registration/MemberRegistration"
 )
 MAILINATOR_HOME_URL = "https://www.mailinator.com"
+
+
+def create_opt_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("username", help="username")
+    parser.add_argument("password", help="password")
+    return parser
 
 
 def create_web_driver(url):
@@ -250,13 +257,18 @@ def register(driver, username, email, password):
 
 
 if __name__ == "__main__":
-    username = sys.argv[1]
-    password = sys.argv[2]
+    parser = create_opt_parser()
+    args = parser.parse_args()
+
+    username = args.username
+    password = args.password
     email = username + "@mailinator.com"
 
     print("Username: %s" % username)
     print("Password: %s" % password)
     print("Email: %s" % email)
+
+    start = time.time()
 
     mailinator = create_web_driver(MAILINATOR_HOME_URL)
     gmarket_register = create_web_driver(GLOBAL_GMARKET_REGIS_URL)
@@ -269,10 +281,13 @@ if __name__ == "__main__":
             and activate(mailinator, username)
             and coupon(gmarket_coupon, username, password)
         ):
-            print("Done")
+            print("All done")
     except Exception as ex:
         print("Exception: %s" % ex)
 
     mailinator.quit()
     gmarket_register.quit()
     gmarket_coupon.quit()
+
+    end = time.time()
+    print("Exec time: %f" % (end - start))

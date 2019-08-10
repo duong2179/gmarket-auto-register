@@ -1,0 +1,7 @@
+#! /bin/bash
+
+if [ "$#" -ne 2 ]; then
+    echo "Usage: gmarketbot <username> <password>"
+else
+    docker run -it --rm github/duong2179/gmarket-autobot "$1" "$2"
+fi
