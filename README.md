@@ -1,0 +1,1 @@
+# gmarket-auto-registrator
