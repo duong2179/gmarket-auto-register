@@ -64,13 +64,13 @@ def mailbox(driver, username):
 
     # Fill username
     print("Fill username")
-    id_input = driver.find_element(By.ID, "inboxfieldsm")
+    id_input = driver.find_element(By.ID, "addOverlay")
     id_input.clear()
     id_input.send_keys(username)
 
     # Click GO
     print("Move to mailbox")
-    go_button = driver.find_element(By.ID, "go_inbox2")
+    go_button = driver.find_element(By.ID, "go-to-public")
     go_button.click()
 
     # Succeeded ?
@@ -242,7 +242,7 @@ def register(driver, username, email, password):
         )
         check_popup_ok, _ = find_element_by_id_in(driver, ["okbutton", "okbtn"])
         if check_popup_ok is None:
-            print("Couldn't locate OK button")
+            print("Couldn't locate OK button. Maybe username or email already exists...")
             return False
         check_popup_ok.click()
         driver.switch_to.default_content()
