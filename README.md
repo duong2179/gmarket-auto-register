@@ -7,7 +7,7 @@ For people living in South Korea and often buy items on [Gmarket](http://gmarket
 + Register Gmarket account with `<username>` & `<password>` as login credentials.
 + Activate the account via the mailinator email.
 + Receive 30% coupon for the account.
-+ That's it. Enjoy buying goods on Gmarket with 30% discount!
++ That's it. Enjoy shopping on Gmarket with 30% discount!
 
 ### Build
 ```
